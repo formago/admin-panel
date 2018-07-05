@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import DashApp from './dashApp';
 import registerServiceWorker from './registerServiceWorker';
 import 'antd/dist/antd.css';
+import './helpers/firebase/index';
 
 ReactDOM.render(<DashApp />, document.getElementById('root'));
 

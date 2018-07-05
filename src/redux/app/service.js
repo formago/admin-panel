@@ -1,32 +1,24 @@
 
 // import { requestHelper } from '../../helpers/request';
 
-import FirebaseHelper from '../../helpers/firebase';
-const { database, createBatch, rsfFirestore, createNewRef } = FirebaseHelper;
+// import { database } from '../../helpers/firebase';
+
 
 // import { database } from '../../firebase/firebase';
 
 const service = {
 
-    writeInFireBaseStore: function () {
+    // writeInFireBaseStore: function () {
 
-        var usersPromise = database.collection('users');
-
-        const readUsers = async () =>
-            await usersPromise.get().then(querySnapshot => {
-                const users = [];
-                try {
-                    querySnapshot.forEach(doc => {
-                        users.push({ doc });
-                    });
-                } catch (e) { }
-                console.log(users);
-                return users;
-            });
-
-
-        readUsers();
-
+    //     database.ref('users').once('value')
+    //         .then((users) => {
+    //             const contacts = [];
+    //             users.forEach((rawData) => {
+    //                 contacts.push(rawData.val());
+    //             });
+    //             return contacts;
+    //         })
+    //         .catch(error => error);
         // .then ((snapshot) => {            
         //     const chatUsers = [];
         //     snapshot.forEach ((rawData) => {
@@ -35,7 +27,7 @@ const service = {
         //     return chatUsers;
         // })
         // .catch (error => error);
-    }
+    
 
 
 };

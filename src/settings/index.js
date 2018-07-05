@@ -15,12 +15,12 @@ const themeConfig = {
 };
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBfMpNOvcX9j1hO6PRspFKybojqa7I09w8",
-  authDomain: "mobile-formago.firebaseapp.com",
-  databaseURL: "https://mobile-formago.firebaseio.com",
-  projectId: "mobile-formago",
-  storageBucket: "mobile-formago.appspot.com",
-  messagingSenderId: "191007405806"
+  apiKey: "AIzaSyA9Cvm2wFV1R0Zp95RI2l2w9pRh_Cxdjug",
+  authDomain: "admin-panel-61cdd.firebaseapp.com",
+  databaseURL: "https://admin-panel-61cdd.firebaseio.com",
+  projectId: "admin-panel-61cdd",
+  storageBucket: "admin-panel-61cdd.appspot.com",
+  messagingSenderId: "971723585345"
 };
 
 
