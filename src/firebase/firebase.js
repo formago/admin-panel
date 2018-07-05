@@ -19,6 +19,8 @@ const githubAuthProvider = new firebase.auth.GithubAuthProvider ();
 const twitterAuthProvider = new firebase.auth.TwitterAuthProvider ();
 
 const database = firebase.database ();
+console.log(database);
+
 export {
     auth,
     database,

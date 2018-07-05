@@ -6975,9 +6975,11 @@ redux-devtools@^3.3.2:
     prop-types "^15.5.7"
     redux-devtools-instrument "^1.0.1"
 
-redux-saga-firebase@^0.14.0:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/redux-saga-firebase/-/redux-saga-firebase-0.14.0.tgz#aa69e4c6f53a66b0b4230004cf037f3c890c23e8"
+redux-saga-firebase@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/redux-saga-firebase/-/redux-saga-firebase-0.10.0.tgz#128c50ce032e99f104c04b024a8821ef1a15987b"
+  dependencies:
+    redux-saga "^0.16.0"
 
 redux-saga@^0.16.0:
   version "0.16.0"

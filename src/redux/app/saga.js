@@ -3,9 +3,9 @@ import { all, take, takeEvery, put, fork, call } from 'redux-saga/effects';
 import service from './service';
 
 
-import { push } from 'react-router-redux';
-import { getToken, clearToken } from '../../helpers/utility';
-import actions from './actions';
+// import { push } from 'react-router-redux';
+// import { getToken, clearToken } from '../../helpers/utility';
+// import actions from './actions';
 
 const fakeApiCall = true; // auth0 or express JWT
 
@@ -16,6 +16,7 @@ export function* submitNamesRequest() {
     const { firstName, lastName } = request.names;   
     const wasSuccessful = yield call(service.writeInFireBaseStore);
 
+    debugger
   }
 }
 

@@ -13,7 +13,7 @@ import config, {
 import { themeConfig } from "./settings";
 import DashAppHolder from "./dashAppStyle";
 import Boot from "./redux/boot";
-import './firebase/firebase';
+// import './firebase/firebase';
 
 const currentAppLocale =
   AppLocale[getCurrentLanguage(config.defaultLanguage || "english").locale];
