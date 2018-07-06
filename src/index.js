@@ -4,6 +4,7 @@ import DashApp from './dashApp';
 import registerServiceWorker from './registerServiceWorker';
 import 'antd/dist/antd.css';
 import './helpers/firebase/index';
+import 'react-bootstrap';
 
 ReactDOM.render(<DashApp />, document.getElementById('root'));
 

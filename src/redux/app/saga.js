@@ -14,6 +14,7 @@ const fakeApiCall = true; // auth0 or express JWT
 const getContacts = async () =>
     await database.ref('users').once('value')
         .then ((snapshot) => {
+         console.log(snapshot);
             const contacts = [];
             snapshot.forEach ((rawData) => {
                 contacts.push (rawData.val ());

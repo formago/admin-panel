@@ -1,5 +1,5 @@
 {
-  "name": "isomorphic",
+  "name": "admin-panel",
   "version": "2.9.0",
   "private": true,
   "dependencies": {
@@ -7,11 +7,12 @@
     "antd-local-icon": "^0.1.3",
     "classnames": "^2.2.5",
     "clone": "^2.1.1",
-    "firebase": "^5.2.0",
+    "firebase": "^5.2.0",   
     "history": "^4.6.3",
     "nprogress": "^0.2.0",
     "postcss-inline-rtl": "^0.9.8",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-intl": "^2.3.0",
     "react-placeholder": "^2.0.0",
@@ -33,7 +34,7 @@
     "redux-thunk": "^2.2.0",
     "smooth-scrollbar": "^8.2.5",
     "styled-components": "^2.2.1",
-    "styled-theme": "^0.3.3"
+    "styled-theme": "^0.3.3" 
   },
   "devDependencies": {
     "react-app-rewired": "^1.4.0"
