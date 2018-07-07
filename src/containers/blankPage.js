@@ -21,7 +21,9 @@ class BlankPage extends Component {
   }
 
   sumbitName() {
-     this.props.sendName({ "firstName": "max", "lastName": "Formago" });
+     var result = this.props.sendName({ "firstName": "max", "lastName": "Formago" });
+      alert(result);
+
   }
   render() {
     const {

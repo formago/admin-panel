@@ -28,16 +28,14 @@ const registerNewUser = async (request) =>
 await database.ref('users').push(request, function(error){
   if(error){
     alert("Error - "+ error);
+    return false;
   }
   else{
     alert("Data is saved");
+    return true;
   }
 
-})
-    .then ((snapshot) => {
-     console.log(snapshot);
-    })
-    .catch (error => error);
+});   
 
 
 export function* submitNamesRequest() {
@@ -58,6 +56,7 @@ export function* submitNewUserRequest() {
     
     const wasSuccessful = yield call(registerNewUser, request.data);   
     console.log(wasSuccessful) 
+    return wasSuccessful;
   }
 }
 
