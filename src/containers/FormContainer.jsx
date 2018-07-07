@@ -5,6 +5,8 @@ import TextArea from "../components/bootstrap-components/TextArea";
 import Select from "../components/bootstrap-components/Select";
 import Button from "../components/bootstrap-components/Button";
 
+import StyledInput from "../components/uielements/input";
+
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
@@ -139,18 +141,19 @@ class FormContainer extends Component {
     e.preventDefault();
     let userData = this.state.newUser;
 
-    fetch("http://example.com", {
-      method: "POST",
-      body: JSON.stringify(userData),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    }).then(response => {
-      response.json().then(data => {
-        console.log("Successful" + data);
-      });
-    });
+    console.log(userData);
+    // fetch("http://example.com", {
+    //   method: "POST",
+    //   body: JSON.stringify(userData),
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json"
+    //   }
+    // }).then(response => {
+    //   response.json().then(data => {
+    //     console.log("Successful" + data);
+    //   });
+    // });
   }
 
   handleClearForm(e) {
@@ -172,18 +175,19 @@ class FormContainer extends Component {
       <Form onSubmit={this.handleFormSubmit}>
         <FormItem {...formItemLayout} label="Textbox">
           {getFieldDecorator("text", {
+            // getValueFromEvent: this.onChange,
             rules: [
-              {
-                type: "email",
-                message: "The input is not valid E-mail!"
-              },
+              // {
+              //   type: "email",
+              //   message: "The input is not valid E-mail!"
+              // },
               {
                 required: true,
-                message: "Please input your E-mail!"
+                message: "Please input your text!"
               }
             ]
           })(
-            <Input
+            <StyledInput
               type={"text"}
               title={"Full Name"}
               name={"name"}

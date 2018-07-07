@@ -23,6 +23,23 @@ const getContacts = async () =>
         })
         .catch (error => error);
 
+        
+const registerNewUser = async (request) =>
+await database.ref('users').push(request, function(error){
+  if(error){
+    alert("Error - "+ error);
+  }
+  else{
+    alert("Data is saved");
+  }
+
+})
+    .then ((snapshot) => {
+     console.log(snapshot);
+    })
+    .catch (error => error);
+
+
 export function* submitNamesRequest() {
   while (true) {
     // We always listen to `REGISTER_REQUEST` actions
@@ -33,8 +50,20 @@ export function* submitNamesRequest() {
   }
 }
 
+export function* submitNewUserRequest() {
+  while (true) {
+    // We always listen to `REGISTER_REQUEST` actions
+    const request = yield take('REGISTER_NEW_USER');
+    debugger
+    
+    const wasSuccessful = yield call(registerNewUser, request.data);   
+    console.log(wasSuccessful) 
+  }
+}
+
 export default function* rootSaga() {
   yield all([
-    fork(submitNamesRequest)
+    fork(submitNamesRequest),
+    fork(submitNewUserRequest)
   ]);
 }

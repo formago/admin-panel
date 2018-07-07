@@ -8,6 +8,7 @@ export function getView(width) {
   return newView;
 }
 const actions = {
+  REGISTER_NEW_USER: 'REGISTER_NEW_USER',
   SEND_NAME: 'SEND_NAME',
   COLLPSE_CHANGE: 'COLLPSE_CHANGE',
   COLLPSE_OPEN_DRAWER: 'COLLPSE_OPEN_DRAWER',
@@ -15,6 +16,16 @@ const actions = {
   TOGGLE_ALL: 'TOGGLE_ALL',
   CHANGE_CURRENT: 'CHANGE_CURRENT',
   CLOSE_ALL: 'CLOSE_ALL',
+
+
+
+
+  registerNewUser: data => {
+    return {
+      type:  actions.REGISTER_NEW_USER,
+      data
+    };         
+  },
 
   sendName: names => {
     return {
