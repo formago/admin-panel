@@ -26,11 +26,17 @@ class Contacts extends Component {
   constructor() {
     super();
     this.sumbitName = this.sumbitName.bind(this);
+    // this.editContact = this.editContact.bind(this);
   }
 
   sumbitName() {
     this.props.addContact({});
   }
+
+  // editContact(){
+
+  // }
+
   render
   () {
     const {

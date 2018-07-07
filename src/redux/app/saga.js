@@ -37,7 +37,7 @@ await database.ref('users').push(request, function(error){
   else{
     alert("Data is saved");
     return true;
-  }
+  } 
 
 });   
 

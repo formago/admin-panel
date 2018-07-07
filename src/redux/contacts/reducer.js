@@ -25,6 +25,7 @@ export default function contactReducer(state = initState, action) {
         editView: true
       };
     case contactActions.EDIT_CONTACT:
+    debugger
       return {
         ...state,
         contacts: action.contacts

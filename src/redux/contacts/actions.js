@@ -41,6 +41,7 @@ const contactActions = {
   editContact: newContact => {
     return (dispatch, getState) => {
       const contacts = getState().Contacts.contacts;
+      debugger
       const newContacts = [];
       contacts.forEach(contact => {
         if (contact.id === newContact.id) {

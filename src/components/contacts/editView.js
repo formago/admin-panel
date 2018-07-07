@@ -41,6 +41,7 @@ export default class extends Component {
           name = `${name}${contact.lastName}`;
         }
         contact.name = name;
+        debugger
         this.props.editContact(contact);
       };
       if (attribute.value === 'note') {
