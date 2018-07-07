@@ -2,7 +2,11 @@
 import { all, take, takeEvery, put, fork, call } from 'redux-saga/effects';
 import service from './service';
 
-import { database } from '../../helpers/firebase';
+// import { database } from '../../helpers/firebase';
+
+import FirebaseHelper from '../../helpers/firebase';
+
+const { database, createBatch, rsfDatabase, createNewRef } = FirebaseHelper;
 
 // import { push } from 'react-router-redux';
 // import { getToken, clearToken } from '../../helpers/utility';
@@ -51,12 +55,9 @@ export function* submitNamesRequest() {
 export function* submitNewUserRequest() {
   while (true) {
     // We always listen to `REGISTER_REQUEST` actions
-    const request = yield take('REGISTER_NEW_USER');
-    debugger
-    
-    const wasSuccessful = yield call(registerNewUser, request.data);   
-    console.log(wasSuccessful) 
-    return wasSuccessful;
+    const request = yield take('REGISTER_NEW_USER');       
+    yield call(rsfDatabase.create, 'users', request.data);
+    return true;
   }
 }
 

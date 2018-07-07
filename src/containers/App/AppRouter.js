@@ -14,7 +14,11 @@ const routes = [
   {
     path: "controlsPage",
     component: asyncComponent(() => import("../controlsPage"))
-  }
+  },
+  {
+    path: "contacts",
+    component: asyncComponent(() => import("../Contacts"))
+  },
 ];
 
 class AppRouter extends Component {

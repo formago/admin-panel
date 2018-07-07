@@ -1,26 +1,77 @@
 import firebase from 'firebase';
+import ReduxSagaFirebase from 'redux-saga-firebase';
+import 'firebase/database';
 import { firebaseConfig } from '../../settings';
-require("firebase/database");
 
+const valid =
+  firebaseConfig && firebaseConfig.apiKey && firebaseConfig.projectId;
 
+const firebaseApp = valid && firebase.initializeApp(firebaseConfig);
+const firebaseAuth = valid && firebase.auth;
 
-firebase.initializeApp(firebaseConfig);
+class FirebaseHelper {
+  isValid = valid;
+  EMAIL = 'email';
+  FACEBOOK = 'facebook';
+  GOOGLE = 'google';
+  GITHUB = 'github';
+  TWITTER = 'twitter';
+  constructor() {
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+    this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.database = this.isValid && firebase.database();
+    debugger
+    // if (this.database) {
+    //   const settings = { timestampsInSnapshots: true };
+    //   this.database.settings(settings);
+    // }
+    this.rsf =
+      this.isValid && new ReduxSagaFirebase(firebaseApp, firebase.database());
+    this.rsfDatabase = this.isValid && this.rsf.database;
+  }
+  createBatch = () => {
+    return this.database.batch();
+  };
+  login(provider, info) {
+    if (!this.isValid) {
+      return;
+    }
+    switch (provider) {
+      case this.EMAIL:
+        return firebaseAuth().signInWithEmailAndPassword(
+          info.email,
+          info.password
+        );
+      case this.FACEBOOK:
+        return firebaseAuth().FacebookAuthProvider();
+      case this.GOOGLE:
+        return firebaseAuth().GoogleAuthProvider();
+      case this.GITHUB:
+        return firebaseAuth().GithubAuthProvider();
+      case this.TWITTER:
+        return firebaseAuth().TwitterAuthProvider();
+      default:
+    }
+  }
+  logout() {
+    return firebaseAuth().signOut();
+  }
 
-// const auth = firebase.auth();
+  isAuthenticated() {
+    firebaseAuth().onAuthStateChanged(user => {
+      return user ? true : false;
+    });
+  }
+  resetPassword(email) {
+    return firebaseAuth().sendPasswordResetEmail(email);
+  }
+  createNewRef() {
+    return firebase
+      .database()
+      .ref()
+      .push().key;
+  }
+}
 
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider ();
-const facebookAuthProvider = new firebase.auth.FacebookAuthProvider ();
-const githubAuthProvider = new firebase.auth.GithubAuthProvider ();
-const twitterAuthProvider = new firebase.auth.TwitterAuthProvider ();
-
-
-const database = firebase.database();
-
-export {
-    // auth,
-    database,
-    googleAuthProvider,
-    githubAuthProvider,
-    facebookAuthProvider,
-    twitterAuthProvider
-};
+export default new FirebaseHelper();

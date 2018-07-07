@@ -8,6 +8,11 @@ const options = [
     key: "controlsPage",
     label: "sidebar.controls",
     leftIcon: "ion-document"
-  }
+  },
+  {
+    key: "contacts",
+    label: "sidebar.contacts",
+    leftIcon: "ion-android-person-add"
+  },
 ];
 export default options;
