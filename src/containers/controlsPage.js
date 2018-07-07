@@ -6,6 +6,7 @@ import Button from "../components/uielements/button";
 import { connect } from "react-redux";
 import FormContainer from "./FormContainer";
 
+
 import appAction from "../redux/app/actions";
 
 const { sendName } = appAction;
@@ -33,10 +34,11 @@ class ControlsPage extends Component {
     return (
       <LayoutContentWrapper style={{ height: '100vh' }}>
         <LayoutContent>
-          <h1>Controls Page</h1> 
+          <h1>Controls Page</h1>
           <h3> Sample Form Container </h3>
         {/* <FormContainer /> */}
         <FormContainer />
+
         </LayoutContent>
       </LayoutContentWrapper>
     );

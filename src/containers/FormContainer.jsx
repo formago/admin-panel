@@ -1,12 +1,25 @@
 import React, { Component } from "react";
-
-/* Import Components */
+import { Form, Input, AutoComplete } from "antd";
 import CheckBox from "../components/bootstrap-components/CheckBox";
-import Input from "../components/bootstrap-components/Input";
 import TextArea from "../components/bootstrap-components/TextArea";
 import Select from "../components/bootstrap-components/Select";
 import Button from "../components/bootstrap-components/Button";
 
+const FormItem = Form.Item;
+const Option = Select.Option;
+const AutoCompleteOption = AutoComplete.Option;
+/* Import Components */
+
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 2 },
+    sm: { span: 2 }
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 12 }
+  }
+};
 
 class FormContainer extends Component {
   constructor(props) {
@@ -18,7 +31,8 @@ class FormContainer extends Component {
         age: "",
         gender: "",
         skills: [],
-        about: ""
+        about: "",
+        name11: ""
       },
 
       genderOptions: ["Male", "Female", "Others"],
@@ -31,6 +45,7 @@ class FormContainer extends Component {
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleCheckBox = this.handleCheckBox.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.handleInput1 = this.handleInput1.bind(this);
   }
 
   /* This lifecycle hook gets executed when the component mounts */
@@ -62,6 +77,20 @@ class FormContainer extends Component {
   }
 
   handleInput(e) {
+    let value = e.target.value;
+    let name = e.target.name;
+    this.setState(
+      prevState => ({
+        newUser: {
+          ...prevState.newUser,
+          [name]: value
+        }
+      }),
+      () => console.log(this.state.newUser)
+    );
+  }
+
+  handleInput1(e) {
     let value = e.target.value;
     let name = e.target.name;
     this.setState(
@@ -138,24 +167,57 @@ class FormContainer extends Component {
   }
 
   render() {
+    const { getFieldDecorator } = this.props.form;
     return (
-      <form className="container-fluid" onSubmit={this.handleFormSubmit}>
-        <Input
-          inputType={"text"}
+      <Form onSubmit={this.handleFormSubmit}>
+        <FormItem {...formItemLayout} label="Textbox">
+          {getFieldDecorator("text", {
+            rules: [
+              {
+                type: "email",
+                message: "The input is not valid E-mail!"
+              },
+              {
+                required: true,
+                message: "Please input your E-mail!"
+              }
+            ]
+          })(
+            <Input
+              type={"text"}
+              title={"Full Name"}
+              name={"name"}
+              value={this.state.newUser.name}
+              placeholder={"Enter your name"}
+              onChange={this.handleInput}
+              id="name"
+            />
+          )}
+        </FormItem>
+        {/* <Input
+          type={"text"}
           title={"Full Name"}
           name={"name"}
           value={this.state.newUser.name}
           placeholder={"Enter your name"}
-          handleChange={this.handleInput}
-        />{" "}
+          onChange={this.handleInput}
+        />{" "} */}
         {/* Name of the user */}
         <Input
-          inputType={"number"}
+          type={"text"}
+          title={"Full Name 111"}
+          name={"name11"}
+          value={this.state.newUser.name11}
+          placeholder={"Enter your name111"}
+          onChange={this.handleInput1}
+        />
+        <Input
+          type={"number"}
           name={"age"}
           title={"Age"}
           value={this.state.newUser.age}
           placeholder={"Enter your age"}
-          handleChange={this.handleAge}
+          onChange={this.handleAge}
         />{" "}
         {/* Age */}
         <Select
@@ -164,7 +226,7 @@ class FormContainer extends Component {
           options={this.state.genderOptions}
           value={this.state.newUser.gender}
           placeholder={"Select Gender"}
-          handleChange={this.handleInput}
+          onChange={this.handleInput}
         />{" "}
         {/* Age Selection */}
         <CheckBox
@@ -198,15 +260,14 @@ class FormContainer extends Component {
           style={buttonStyle}
         />{" "}
         {/* Clear the form */}
-      </form>
+      </Form>
     );
   }
 }
-
-
 
 const buttonStyle = {
   margin: "10px 10px 10px 10px"
 };
 
-export default FormContainer;
+const WrappedFormContainer = Form.create()(FormContainer);
+export default WrappedFormContainer;
