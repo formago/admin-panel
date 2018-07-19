@@ -20,8 +20,8 @@ export default function contactReducer(state = initState, action) {
     case contactActions.ADD_CONTACT:
       return {
         ...state,
-        contacts: action.contacts,
-        seectedId: action.selectedId,
+        // contacts: action.contacts,
+        // seectedId: action.selectedId,
         editView: true
       };
     case contactActions.EDIT_CONTACT:

@@ -32,6 +32,7 @@ export default class extends Component {
     [...names, ...otherAttributes].forEach(attribute => {
       const value = contact[attribute.value];
       const editContact = event => {
+        
         contact[attribute.value] = event.target.value;
         let name = '';
         if (contact.firstName) {
@@ -40,8 +41,7 @@ export default class extends Component {
         if (contact.lastName) {
           name = `${name}${contact.lastName}`;
         }
-        contact.name = name;
-        debugger
+        contact.name = name;        
         this.props.editContact(contact);
       };
       if (attribute.value === 'note') {

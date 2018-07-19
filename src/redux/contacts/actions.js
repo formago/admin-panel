@@ -17,6 +17,7 @@ const contactActions = {
     id
   }),
   addContact: () => {
+    debugger
     const newContact = {
       id: new Date(),
       firstName: "",

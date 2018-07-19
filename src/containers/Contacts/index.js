@@ -25,20 +25,23 @@ class Contacts extends Component {
 
   constructor() {
     super();
+    this.state = { editedContact: '' };
     this.sumbitName = this.sumbitName.bind(this);
-    // this.editContact = this.editContact.bind(this);
+    this.formHandleChange = this.formHandleChange.bind(this);
   }
 
   sumbitName() {
     this.props.addContact({});
   }
 
-  // editContact(){
-
-  // }
+  formHandleChange(contact) {
+    debugger
+    console.log(contact);
+    this.setState({ editedContact: contact });
+  }
 
   render
-  () {
+    () {
     const {
       contacts,
       seectedId,
@@ -52,6 +55,7 @@ class Contacts extends Component {
     const selectedContact = seectedId
       ? contacts.filter(contact => contact.id === seectedId)[0]
       : null;
+    debugger
     const onVIewChange = () => viewChange(!editView);
     return (
       <ContactsWrapper
@@ -90,28 +94,28 @@ class Contacts extends Component {
                 {editView ? (
                   <EditContactView
                     contact={selectedContact}
-                    editContact={editContact}
+                    editContact={this.formHandleChange}
                     otherAttributes={otherAttributes}
                   />
                 ) : (
-                  <SingleContactView
-                    contact={selectedContact}
-                    otherAttributes={otherAttributes}
-                  />
-                )}
+                    <SingleContactView
+                      contact={selectedContact}
+                      otherAttributes={otherAttributes}
+                    />
+                  )}
               </Scrollbar>
             </Content>
           ) : (
-            <div className="isoContactControl">
-              <Button
-                type="primary"
-                onClick={this.sumbitName}
-                className="isoAddContactBtn"
-              >
-                <IntlMessages id="contactlist.addNewContact" />
-              </Button>
-            </div>
-          )}
+              <div className="isoContactControl">
+                <Button
+                  type="primary"
+                  onClick={this.sumbitName}
+                  className="isoAddContactBtn"
+                >
+                  <IntlMessages id="contactlist.addNewContact" />
+                </Button>
+              </div>
+            )}
         </Layout>
       </ContactsWrapper>
     );
@@ -119,6 +123,7 @@ class Contacts extends Component {
 }
 
 function mapStateToProps(state) {
+  debugger
   const { contacts, seectedId, editView } = state.Contacts;
   return {
     contacts,
