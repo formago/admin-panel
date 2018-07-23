@@ -22,13 +22,13 @@ export default function contactReducer(state = initState, action) {
         ...state,
         // contacts: action.contacts,
         // seectedId: action.selectedId,
-        editView: true
+        editView: false
       };
-    case contactActions.EDIT_CONTACT:
-    debugger
+    case contactActions.EDIT_CONTACT:    
       return {
         ...state,
-        contacts: action.contacts
+        contacts: action.contacts,
+        editView: false
       };
     case contactActions.DELETE__CONTACT:
       return {

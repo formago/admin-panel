@@ -28,6 +28,7 @@ class Contacts extends Component {
     this.state = { editedContact: '' };
     this.sumbitName = this.sumbitName.bind(this);
     this.formHandleChange = this.formHandleChange.bind(this);
+    this.saveEditedContact = this.saveEditedContact.bind(this);
   }
 
   sumbitName() {
@@ -35,9 +36,12 @@ class Contacts extends Component {
   }
 
   formHandleChange(contact) {
-    debugger
-    console.log(contact);
     this.setState({ editedContact: contact });
+  }
+
+  saveEditedContact() {
+    this.props.addContact(this.state.editedContact);
+    console.log(this.state.editedContact);
   }
 
   render
@@ -50,13 +54,14 @@ class Contacts extends Component {
       addContact,
       editContact,
       deleteContact,
-      viewChange
+      viewChange,
     } = this.props;
     const selectedContact = seectedId
       ? contacts.filter(contact => contact.id === seectedId)[0]
       : null;
-    debugger
+
     const onVIewChange = () => viewChange(!editView);
+
     return (
       <ContactsWrapper
         className="isomorphicContacts"
@@ -74,9 +79,15 @@ class Contacts extends Component {
           {selectedContact ? (
             <Content className="isoContactBox">
               <div className="isoContactControl">
-                <Button type="button" onClick={onVIewChange}>
-                  {editView ? <Icon type="check" /> : <Icon type="edit" />}{" "}
-                </Button>
+
+                {
+                  editView ? (<Button type="button" onClick={this.saveEditedContact} >
+                    <Icon type="check" />{" "}
+                  </Button>) : (<Button type="button" onClick={onVIewChange}>
+                    <Icon type="edit" />{" "}
+                  </Button>)
+                }
+
                 <DeleteButton
                   deleteContact={deleteContact}
                   contact={selectedContact}

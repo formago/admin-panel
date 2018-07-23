@@ -3,11 +3,12 @@ import actions from './actions';
 import FirebaseHelper from '../../helpers/firebase';
 const { database, createBatch, rsfDatabase, createNewRef } = FirebaseHelper;
 
-// export function* addContact() {
-//   yield takeEvery(actions.ADD_CONTACT, function*(payload) {
-//     yield call(rsfDatabase.create, 'contacts', payload.contact);
-//   });
-// }
+export function* addContact() {
+  yield takeEvery(actions.ADD_CONTACT, function*(payload) {
+    yield call(rsfDatabase.create, 'contacts', payload.contact);
+  });
+}
+
 export function* editContact() {
   yield takeEvery(actions.EDIT_CONTACT, function* () { });
 }
@@ -16,7 +17,7 @@ export function* deleteContact() {
 }
 export default function* rootSaga() {
   yield all([
-    //  fork(addContact), 
+    fork(addContact), 
     fork(editContact),
     fork(deleteContact)]);
 }

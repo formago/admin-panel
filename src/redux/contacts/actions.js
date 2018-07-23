@@ -16,9 +16,8 @@ const contactActions = {
     type: contactActions.CHANGE_CONTACT,
     id
   }),
-  addContact: () => {
-    debugger
-    const newContact = {
+  addContact: (contact) => {
+    let newContact = {
       id: new Date(),
       firstName: "",
       avatar: contacts[new Date() % 10].avatar,
@@ -30,11 +29,13 @@ const contactActions = {
       work: "",
       note: ""
     };
+
+    let clone = { ...newContact, ...contact };
     return (dispatch, getState) => {
       dispatch({
         type: contactActions.ADD_CONTACT,
-        contacts: [...getState().Contacts.contacts, newContact],
-        contact:newContact,
+        contacts: [...getState().Contacts.contacts, clone],
+        contact: clone,
         selectedId: newContact.id
       });
     };

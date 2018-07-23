@@ -31,8 +31,7 @@ export default class extends Component {
     ];
     [...names, ...otherAttributes].forEach(attribute => {
       const value = contact[attribute.value];
-      const editContact = event => {
-        
+      const editContact = event => {        
         contact[attribute.value] = event.target.value;
         let name = '';
         if (contact.firstName) {
